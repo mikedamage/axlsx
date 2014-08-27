@@ -622,7 +622,6 @@ module Axlsx
       auto_filter.apply if auto_filter.range
       str << '<?xml version="1.0" encoding="UTF-8"?>'
       str << worksheet_node
-      serialized_sheet_data
       serializable_parts.each do |item|
         item.to_xml_string(str) if item
       end
@@ -779,10 +778,6 @@ module Axlsx
 
     def sheet_data
       @sheet_data ||= SheetData.new self
-    end
-
-    def serialized_sheet_data
-      @serialized_sheet_data ||= sheet_data.to_xml_string
     end
 
     def worksheet_drawing
